@@ -1,0 +1,28 @@
+#!/usr/bin/env /Users/pisanoc/.rvm/rubies/ruby-2.2.5/bin/ruby
+
+require_relative '../lib/audit'
+
+if $options.filter.nil? and $options.report.nil?
+  puts $cred_data
+end
+
+if !$options.filter.nil? and $options.report.nil?
+  puts $filtered_data
+end
+
+if $options.report == 'list'
+  puts $reports_available
+end
+
+if !$report.nil?
+  case $options.output
+  when 'json'
+    puts JSON.generate($report)
+  when 'yaml'
+    puts $report.to_yaml
+  when 'pretty', nil
+    require_relative '../lib/audit/reports/outputs'
+  when 'html'
+    require_relative '../lib/audit/reports/htmlout'
+  end
+end

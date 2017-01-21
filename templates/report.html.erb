@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<% case $options.report
+  when 'DynamodbTables' -%>
+<%= $options.table %> DynamoDB Tables:
+<% $report.each do |k,v| %>
+Name: <%= k %>
+ARN: <%= v[:arn] %>
+Status: <%= v[:status] %>
+Creation Date: <%= v[:create_date] %>
+Items in Table: <%= v[:items] %>
+<% end %>
+<% when 'IamPolicies' -%>
+<%= $options.table %> IAM Policies:
+<% $report.each do |k,v| %>
+Name: <%= k %>
+ARN: <%= v[:arn] %>
+Creation Date: <%= v[:creation_date] %>
+Updated Date: <%= v[:update_date] %>
+Version: <%= v[:version] %>
+Default Version: <%= v[:default_version] %>
+Attachement Count: <%= v[:attach_count] %>
+Policy Document: <%= v[:policy_document] %>
+<% end %>
+<% when 'IamRoles' -%>
+<%= $options.table %> IAM Roles:
+<% $report.each do |k,v| %>
+Name: <%= k %>
+ARN: <%= v[:arn] %>
+Creation Date: <%= v[:creation_date] %>
+<% if v[:policies][:policy_name].empty? and v[:policies][:policy_arn].empty? -%>
+No attached policies
+<% else -%>
+Attached Policy Names:
+<% v[:policies][:policy_name].each do |name| -%>
+<%= name %>
+<% end -%>
+Attached Policy ARNs:
+<% v[:policies][:policy_arn].each do |arn| -%>
+<%= arn %>
+<% end -%>
+<% end -%>
+<% end %>
+<% when 'KmsKeys' -%>
+<%= $options.table %> KMS Keys:
+<% $report.each do |k,v| %>
+Name: <%= k %>
+ARN: <%= v[:arn] %>
+State: <%= v[:state] %>
+<% end %>
+<% when 'Route53Zones' -%>
+<%= $options.table %> Route53 Zones:
+<% $report.each do |k,v| %>
+Name: <%= k %>
+Record Count: <%= v[:resource_count] %>
+Private Zone: <%= v[:private_zone] %>
+<% end %>
+<% when 'S3Buckets' -%>
+<%= $options.table %> S3 Buckets:
+<% $report.each do |k,v| %>
+Name: <%= k %>
+Creation Date: <%= v[:creation_date] %>
+Logging Enabled: <%= v[:logging] %>
+Log Target: <%= v[:target] %>
+<% end %>
+<% when 'ElasticLBs' -%>
+<%= $options.table %> Load Balancers:
+<% $report.each do |k,v| %>
+Name: <%= k %>
+Type: <%= v[:type] %>
+Scheme: <%= v[:scheme] %>
+Creation Date: <%= v[:created_time] %>
+DNS Name: <%= v[:dns_name] %>
+Availability Zones: <%= v[:availability_zones][:name].join(',').gsub(/,/, ', ') %>
+Subnets: <%= v[:availability_zones][:subnet_id].join(',').gsub(/,/, ', ') %>
+Security Groups: <%= v[:security_group].join(',').gsub(/,/, ', ') %>
+Logging: <%= v[:logging][:access_log] %>
+S3 Location: <%= v[:logging][:s3_log_location] %>
+Log Prefix: <%= v[:logging][:s3_log_prefix] %>
+<% end %>
+<% end -%>
+
+</body>
+</html>
