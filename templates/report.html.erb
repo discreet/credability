@@ -4,81 +4,115 @@
 
 <% case $options.report
   when 'DynamodbTables' -%>
-<%= $options.table %> DynamoDB Tables:
+<h3><%= $options.table %> DynamoDB Tables:</h3>
 <% $report.each do |k,v| %>
-Name: <%= k %>
-ARN: <%= v[:arn] %>
-Status: <%= v[:status] %>
-Creation Date: <%= v[:create_date] %>
-Items in Table: <%= v[:items] %>
+<p><strong>Name:</strong> <%= k %>
+<br>
+<strong>ARN:</strong> <%= v[:arn] %>
+<br>
+<strong>Status:</strong> <%= v[:status] %>
+<br>
+<strong>Creation Date:</strong> <%= v[:create_date] %>
+<br>
+<strong>Items in Table:</strong> <%= v[:items] %></p>
 <% end %>
 <% when 'IamPolicies' -%>
-<%= $options.table %> IAM Policies:
+<h3><%= $options.table %> IAM Policies:</h3>
 <% $report.each do |k,v| %>
-Name: <%= k %>
-ARN: <%= v[:arn] %>
-Creation Date: <%= v[:creation_date] %>
-Updated Date: <%= v[:update_date] %>
-Version: <%= v[:version] %>
-Default Version: <%= v[:default_version] %>
-Attachement Count: <%= v[:attach_count] %>
-Policy Document: <%= v[:policy_document] %>
+<p><strong>Name:</strong> <%= k %>
+<br>
+<strong>ARN:</strong> <%= v[:arn] %>
+<br>
+<strong>Creation Date:</strong> <%= v[:creation_date] %>
+<br>
+<strong>Updated Date:</strong> <%= v[:update_date] %>
+<br>
+<strong>Version:</strong> <%= v[:version] %>
+<br>
+<strong>Default Version:</strong> <%= v[:default_version] %>
+<br>
+<strong>Attachement Count:</strong> <%= v[:attach_count] %>
+<br>
+<strong>Policy Document:</strong> <%= v[:policy_document] %></p>
 <% end %>
 <% when 'IamRoles' -%>
-<%= $options.table %> IAM Roles:
+<h3><%= $options.table %> IAM Roles:</h3>
 <% $report.each do |k,v| %>
-Name: <%= k %>
-ARN: <%= v[:arn] %>
-Creation Date: <%= v[:creation_date] %>
+<p><strong>Name:</strong> <%= k %>
+<br>
+<strong>ARN:</strong> <%= v[:arn] %>
+<br>
+<strong>Creation Date:</strong> <%= v[:creation_date] %>
+<br>
 <% if v[:policies][:policy_name].empty? and v[:policies][:policy_arn].empty? -%>
 No attached policies
 <% else -%>
-Attached Policy Names:
+<strong>Attached Policy Names:</strong>
+<br>
 <% v[:policies][:policy_name].each do |name| -%>
 <%= name %>
+<br>
 <% end -%>
-Attached Policy ARNs:
+<strong>Attached Policy ARNs:</strong>
+<br>
 <% v[:policies][:policy_arn].each do |arn| -%>
-<%= arn %>
+<%= arn %></p>
 <% end -%>
 <% end -%>
 <% end %>
 <% when 'KmsKeys' -%>
-<%= $options.table %> KMS Keys:
+<h3><%= $options.table %> KMS Keys:</h3>
 <% $report.each do |k,v| %>
-Name: <%= k %>
-ARN: <%= v[:arn] %>
-State: <%= v[:state] %>
+<p><strong>Name:</strong> <%= k %>
+<br>
+<strong>ARN:</strong> <%= v[:arn] %>
+<br>
+<strong>State:</strong> <%= v[:state] %></p>
 <% end %>
 <% when 'Route53Zones' -%>
-<%= $options.table %> Route53 Zones:
+<h3><%= $options.table %> Route53 Zones:</h3>
 <% $report.each do |k,v| %>
-Name: <%= k %>
-Record Count: <%= v[:resource_count] %>
-Private Zone: <%= v[:private_zone] %>
+<p><strong>Name:</strong> <%= k %>
+<br>
+<strong>Record Count:</strong> <%= v[:resource_count] %>
+<br>
+<strong>Private Zone:</strong> <%= v[:private_zone] %></p>
 <% end %>
 <% when 'S3Buckets' -%>
-<%= $options.table %> S3 Buckets:
+<h3><%= $options.table %> S3 Buckets:</h3>
 <% $report.each do |k,v| %>
-Name: <%= k %>
-Creation Date: <%= v[:creation_date] %>
-Logging Enabled: <%= v[:logging] %>
-Log Target: <%= v[:target] %>
+<p><strong>Name:</strong> <%= k %>
+<br>
+<strong>Creation Date:</strong> <%= v[:creation_date] %>
+<br>
+<strong>Logging Enabled:</strong> <%= v[:logging] %>
+<br>
+<strong>Log Target:</strong> <%= v[:target] %></p>
 <% end %>
 <% when 'ElasticLBs' -%>
-<%= $options.table %> Load Balancers:
+<h3><%= $options.table %> Load Balancers:</h3>
 <% $report.each do |k,v| %>
-Name: <%= k %>
-Type: <%= v[:type] %>
-Scheme: <%= v[:scheme] %>
-Creation Date: <%= v[:created_time] %>
-DNS Name: <%= v[:dns_name] %>
-Availability Zones: <%= v[:availability_zones][:name].join(',').gsub(/,/, ', ') %>
-Subnets: <%= v[:availability_zones][:subnet_id].join(',').gsub(/,/, ', ') %>
-Security Groups: <%= v[:security_group].join(',').gsub(/,/, ', ') %>
-Logging: <%= v[:logging][:access_log] %>
-S3 Location: <%= v[:logging][:s3_log_location] %>
-Log Prefix: <%= v[:logging][:s3_log_prefix] %>
+<p><strong>Name:</strong> <%= k %>
+<br>
+<strong>Type:</strong> <%= v[:type] %>
+<br>
+<strong>Scheme:</strong> <%= v[:scheme] %>
+<br>
+<strong>Creation Date:</strong> <%= v[:created_time] %>
+<br>
+<strong>DNS Name:</strong> <%= v[:dns_name] %>
+<br>
+<strong>Availability Zones:</strong> <%= v[:availability_zones][:name].join(',').gsub(/,/, ', ') %>
+<br>
+<strong>Subnets:</strong> <%= v[:availability_zones][:subnet_id].join(',').gsub(/,/, ', ') %>
+<br>
+<strong>Security Groups:</strong> <%= v[:security_group].join(',').gsub(/,/, ', ') %>
+<br>
+<strong>Logging:</strong> <%= v[:logging][:access_log] %>
+<br>
+<strong>S3 Location:</strong> <%= v[:logging][:s3_log_location] %>
+<br>
+<strong>Log Prefix:</strong> <%= v[:logging][:s3_log_prefix] %></p>
 <% end %>
 <% end -%>
 

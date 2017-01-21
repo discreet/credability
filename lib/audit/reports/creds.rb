@@ -1,7 +1,7 @@
 module Audit
   class Creds
 
-    tables = YAML::load_file(File.expand_path("../../../../config/tables.yaml", __FILE__))
+    tables = YAML::load_file(File.expand_path("../../../../config/config.yaml", __FILE__))
 
     if tables['ProdTables'].include?($options.table)
       access_key = 'reports.access.prod'
