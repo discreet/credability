@@ -1,22 +1,34 @@
 module Audit
   class Rcredstash
 
-    if !$options.table.nil? and !$options.credstash.nil? or !$options.report.nil? or !$options.report == 'list'
-      CredStash.configure do |config|
-        config.table_name = $options.table
+    def configure_credstash?(table, credstash, report)
+      table = $options.table
+      credstash = $options.credstash
+      report = $options.report
+
+      if !table.nil? and !credstash.nil? or !report.nil? or !report == 'list'
+        CredStash.configure do |config|
+          config.table_name = $options.table
+        end
       end
     end
 
-    case $options.credstash
-    when 'list'
-      $cred_data = CredStash.list.keys
-    when 'get'
-      if $options.context.nil?
-        $cred_data = CredStash.get($options.credkey)
-      else
-	context = $options.context.gsub(/,/, ' ')
-        $cred_data = system("credstash -t #{$options.table} get #{$options.credkey} #{context}")
-        exit
+    def credstash_action(credstash, context, table, credkey)
+      credstash = $options.credstash
+      context = $options.context
+      table = $options.table
+      credkey = $options.credkey
+
+      case credstash
+      when 'list'
+        $cred_data = CredStash.list.keys
+      when 'get'
+        if context.nil?
+          $cred_data = CredStash.get(credkey)
+        else
+          $cred_data = system("credstash -t #{table} get #{credkey} #{context.gsub(/,/, ' ')}")
+          exit
+        end
       end
     end
 

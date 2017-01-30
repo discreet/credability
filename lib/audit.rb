@@ -1,4 +1,6 @@
-config = YAML::load_file(File.expand_path("../config/config.yaml", __FILE__))
+require 'yaml'
+
+config = YAML::load_file(File.expand_path("../../config/config.yaml", __FILE__))
 
 Gem.paths = {
   'GEM_PATH' => config['GemPath']
@@ -9,7 +11,6 @@ require 'optparse'
 require 'rcredstash'
 require 'uri'
 require 'json'
-require 'yaml'
 require 'erb'
 
 require_relative 'audit/options'

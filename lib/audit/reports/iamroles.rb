@@ -1,37 +1,42 @@
 module Audit
   class IamRoles
 
-    if $options.report == 'IamRoles'
-      role_list = $client.list_roles()
+    def get_roles(report, client)
+      report = $options.report
+      client = $client
 
-      if role_list.roles.empty?
-        puts 'No Roles Available'
-        $noreport = 'No Roles Available'
-      else
-        $report = Hash.new
+      if report == 'IamRoles'
+        role_list = client.list_roles()
 
-	roles = role_list.roles.map{ |i| i['role_name'] }
+        if role_list.roles.empty?
+          puts 'No Roles Available'
+          $noreport = 'No Roles Available'
+        else
+          $report = Hash.new
 
-        roles.each do |role|
-          policy_data = $client.list_attached_role_policies(
-            {
-	      role_name: role
-	    }
-	  )
+	  roles = role_list.roles.map{ |i| i['role_name'] }
 
-	  role_data = $client.get_role(
-            {
-	      role_name: role
-	    }
-	  )
+          roles.each do |role|
+            policy_data = client.list_attached_role_policies(
+              {
+	        role_name: role
+	      }
+	    )
 
-	  $report[role] = Hash.new
-	  $report[role][:arn] = role_data.role.arn
-	  $report[role][:creation_date] = role_data.role.create_date
-	  $report[role][:policies] = Hash.new
-	  $report[role][:policies][:policy_name] = policy_data.attached_policies.map{ |i| i['policy_name'] }
-	  $report[role][:policies][:policy_arn] = policy_data.attached_policies.map{ |i| i['policy_arn'] }
-	end
+	    role_data = client.get_role(
+              {
+	        role_name: role
+	      }
+	    )
+
+	    $report[role] = Hash.new
+	    $report[role][:arn] = role_data.role.arn
+	    $report[role][:creation_date] = role_data.role.create_date
+	    $report[role][:policies] = Hash.new
+	    $report[role][:policies][:policy_name] = policy_data.attached_policies.map{ |i| i['policy_name'] }
+	    $report[role][:policies][:policy_arn] = policy_data.attached_policies.map{ |i| i['policy_arn'] }
+	  end
+        end
       end
     end
 

@@ -1,6 +1,9 @@
 ---
 DevTables:
-
+  - foo
+  - bar
 ProdTables:
+  - foobar
+  - foobaz
 
 GemPath:
