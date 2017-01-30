@@ -2,9 +2,11 @@ require 'yaml'
 
 config = YAML::load_file(File.expand_path("../../config/config.yaml", __FILE__))
 
-Gem.paths = {
-  'GEM_PATH' => config['GemPath']
-}
+if !config['GemPath'].nil?
+  Gem.paths = {
+    'GEM_PATH' => config['GemPath']
+  }
+end
 
 require 'aws-sdk'
 require 'optparse'
