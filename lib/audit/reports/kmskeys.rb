@@ -6,6 +6,7 @@ module Audit
 
       if key_list.aliases.empty?
         puts 'No Keys Available'
+        $noreport = 'No Keys Available'
       else
         $report = Hash.new
 

@@ -5,6 +5,7 @@ module Audit
       route53_zones = $client.list_hosted_zones({})
 
       if route53_zones.hosted_zones.empty?
+	$noreport = 'No Zones Available'
 	puts 'No Zones Available'
       else
         $report = Hash.new
@@ -17,6 +18,7 @@ module Audit
 	      id: zone_id
 	    }
 	  )
+          zone_name = zone_data.hosted_zone.name
 
 	  $report[zone_name] = Hash.new
 	  $report[zone_name][:private_zone] = zone_data.hosted_zone.config.private_zone

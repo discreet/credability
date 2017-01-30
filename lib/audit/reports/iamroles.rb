@@ -6,6 +6,7 @@ module Audit
 
       if role_list.roles.empty?
         puts 'No Roles Available'
+        $noreport = 'No Roles Available'
       else
         $report = Hash.new
 

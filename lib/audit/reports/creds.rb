@@ -9,8 +9,6 @@ module Audit
     elsif tables['DevTables'].include?($options.table)
       access_key = 'reports.access.dev'
       secret_key = 'reports.secret.dev'
-    else
-      fail("#{$options.table} is not valid")
     end
 
     if !$options.region.nil? and !$options.table.nil? and !$options.report.nil?
@@ -74,7 +72,7 @@ module Audit
           region: $options.region
         }
       )
-    when 'Whitelist'
+    when 'ReservedInstances', 'Ec2Instances'
       $client = Aws::EC2::Client.new(
         {
 	  access_key_id: access_key,

@@ -1,5 +1,7 @@
+config = YAML::load_file(File.expand_path("../config/config.yaml", __FILE__))
+
 Gem.paths = {
-  'GEM_PATH' => '/Users/pisanoc/.rvm/gems/ruby-2.2.5:/Users/pisanoc/.rvm/gems/ruby-2.2.5@global'
+  'GEM_PATH' => config['GemPath']
 }
 
 require 'aws-sdk'
@@ -9,7 +11,6 @@ require 'uri'
 require 'json'
 require 'yaml'
 require 'erb'
-require 'faraday'
 
 require_relative 'audit/options'
 require_relative 'audit/reports/list'
@@ -27,6 +28,8 @@ require_relative 'audit/reports/iampolicies'
 require_relative 'audit/reports/iamroles'
 require_relative 'audit/reports/dynamodb'
 require_relative 'audit/reports/elasticlbs'
+require_relative 'audit/reports/reservedinstances'
+require_relative 'audit/reports/ec2instances'
 
 module Audit
 end

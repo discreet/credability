@@ -6,7 +6,8 @@ module Audit
       applicationlbs = $albclient.describe_load_balancers({})
 
       if applicationlbs.load_balancers.empty? or elasticlbs.load_balancer_descriptions.empty?
-        puts 'No Application Load Balancers Available'
+        puts 'No Load Balancers Available'
+        $noreport = 'No Load Balancers Available'
       else
         $report = Hash.new
 

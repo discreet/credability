@@ -8,7 +8,9 @@ module Audit
       'IamRoles',
       'S3Buckets',
       'Route53Zones',
-      'ElasticLBs'
+      'ElasticLBs',
+      'ReservedInstances',
+      'Ec2Instances',
     ]
 
   end

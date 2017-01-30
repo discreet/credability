@@ -11,7 +11,7 @@ if !$options.filter.nil? and $options.report.nil?
 end
 
 if $options.report == 'list'
-  puts $reports_available
+  puts $reports_available.sort
 end
 
 if !$report.nil?
@@ -26,3 +26,11 @@ if !$report.nil?
     require_relative '../lib/audit/reports/htmlout'
   end
 end
+
+if !$noreport.nil?
+  case $options.output
+  when 'html'
+    require_relative '../lib/audit/reports/htmlout'
+  end
+end
+

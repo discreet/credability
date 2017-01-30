@@ -6,6 +6,7 @@ module Audit
 
       if bucket_list.buckets.empty?
         puts 'No Buckets Available'
+        $noreport = 'No Buckets Available'
       else
         $report = Hash.new
 

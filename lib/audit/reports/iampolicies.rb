@@ -11,6 +11,7 @@ module Audit
 
       if policy_list.policies.empty?
         puts 'No Local Policies Available'
+        $noreport = 'No Local Policies Available'
       else
         $report = Hash.new
 

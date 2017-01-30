@@ -6,6 +6,7 @@ module Audit
 
       if table_list.table_names.empty?
         puts 'No Tables Available'
+        $noreport = 'No Tables Available'
       else
 	$report = Hash.new
 
