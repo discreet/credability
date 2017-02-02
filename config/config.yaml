@@ -1,9 +1,4 @@
 ---
 DevTables:
-  - foo
-  - bar
 ProdTables:
-  - foobar
-  - foobaz
-
-GemPath: /Users/pisanoc/.rvm/gems/ruby-2.2.5:/Users/pisanoc/.rvm/gems/ruby-2.2.5@global
+GemPath:

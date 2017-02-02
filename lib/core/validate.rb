@@ -37,6 +37,13 @@ module Core
     end
   end
 
+  def can_report?(region, table, report)
+
+    if region.nil? and table.nil? and report.nil?
+      fail('-r or --region, -t or --table, and --report are required to generate a report')
+    end
+  end
+
   def report_path?(output, path, report)
 
     if output.nil? and !path.nil? and report.nil?
