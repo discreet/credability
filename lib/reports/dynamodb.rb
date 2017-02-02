@@ -6,6 +6,7 @@ module Reports
     if list.table_names.empty?
       puts 'No Tables Available'
       $noreport = 'No Tables Available'
+      exit
     else
       $report = Hash.new
 

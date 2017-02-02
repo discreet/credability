@@ -14,6 +14,7 @@ require 'rcredstash'
 require 'uri'
 require 'json'
 require 'erb'
+require 'time_difference'
 
 require_relative 'core/options'
 require_relative 'core/list'
@@ -25,10 +26,7 @@ require_relative 'outputs/reports'
 require_relative 'outputs/json'
 require_relative 'outputs/yaml'
 
-case $options.report
-when 'DynamodbTables'
-  require_relative 'reports/dynamodb'
-end
+require_relative 'reports/reports'
 
 include Core
 include Outputs

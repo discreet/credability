@@ -22,6 +22,14 @@ module Core
     secret_key = @secret_key
 
     case report
+    when 'Route53Zones'
+      $client = Aws::Route53::Client.new(
+        {
+	  access_key_id: access_key,
+	  secret_access_key: secret_key,
+	  region: region
+	}
+      )
     when 'KmsKeys'
       $client = Aws::KMS::Client.new(
 	{

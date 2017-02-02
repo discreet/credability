@@ -10,7 +10,6 @@ module Core
     'LoadBalancers',
     'ReservedInstances',
     'Ec2Instances',
-    'Whitelist'
   ]
 end
 
