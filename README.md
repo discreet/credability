@@ -1,5 +1,4 @@
 # Credability
----
 
 #### Table of Contents
 
@@ -31,6 +30,8 @@ Coming Soon...
 ### Setup Requirements
 
   * Ruby >= 2.2.5
+  * IAM User named 'reports.access.prod and 'reports.access.dev' with
+    credentials kept in CredStash
 
 More Coming Soon...
 
@@ -43,25 +44,25 @@ Coming Soon...
 Usage: credability [arguments]
 
 Arguments:
-  `--help, -h`: Print Help menu
+  --help, -h: Print Help menu
 
-  `--region, -r`: AWS Region to query
+  --region, -r: AWS Region to query
 
-  `--table, -t`: DynamoDB Table to query for credentials
+  --table, -t: DynamoDB Table to query for credentials
 
-  `--credstash, -c`: CredStash action to take; get, list
+  --credstash, -c: CredStash action to take; get, list
 
-  `--cred_key`: CredStash key for the credential to fetch
+  --cred_key: CredStash key for the credential to fetch
 
-  `--context`: Comma separated key value pair encryption context
+  --context: Comma separated key value pair encryption context
 
-  `--filter`: Regex filter for CredStash list response data
+  --filter: Regex filter for CredStash list response data
 
-  `--report`: The name of the report to run; or to list all reports
+  --report: The name of the report to run; or to list all reports
 
-  `--output`: The output format; json, yaml, pretty
+  --output: The output format; json, yaml, pretty
 
-  `--path`: The path to create a report file
+  --path: The path to create a report file
 ```
 
 View list of available reports:
