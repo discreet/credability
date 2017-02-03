@@ -30,7 +30,7 @@ Coming Soon...
 ### Setup Requirements
 
   * Ruby >= 2.2.5
-  * IAM User named 'reports.access.prod and 'reports.access.dev' with
+  * IAM User named 'reports.access.prod' and 'reports.access.dev' with
     credentials kept in CredStash
 
 More Coming Soon...
