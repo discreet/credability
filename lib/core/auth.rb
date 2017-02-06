@@ -8,8 +8,8 @@ module Core
       access_key = 'reports.access.prod'
       secret_key = 'reports.secret.prod'
     elsif tables['DevTables'].include?(table)
-      access_key = 'reports.access.prod'
-      secret_key = 'reports.secret.prod'
+      access_key = 'reports.access.dev'
+      secret_key = 'reports.secret.dev'
     end
 
     @access_key = CredStash.get(access_key)

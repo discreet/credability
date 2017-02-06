@@ -3,6 +3,7 @@ module Reports
   def get_reservedinstances()
     list = $client.describe_reserved_instances({})
 
+    puts list
     if list.reserved_instances.empty?
       puts 'No Reserved Instances Available'
       $noreport = 'No Reserved Instances Available'
@@ -17,7 +18,7 @@ module Reports
 	$report[:instances][id] = Hash.new
 	$report[:instances][id][:type] = instance.instance_type
 	$report[:instances][id][:count] = instance.instance_count
-	$report[:instances][id][:state] = instance.instance_state
+	$report[:instances][id][:state] = instance.state
 	$report[:instances][id][:availability_zone] = instance.availability_zone
 	$report[:instances][id][:scope] = instance.scope
 	$report[:instances][id][:tenancy] = instance.instance_tenancy

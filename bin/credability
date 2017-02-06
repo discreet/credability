@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require_relative '../lib/requirements'
 
 # Validation functions
@@ -11,10 +12,6 @@ can_report?($options.region, $options.table, $options.report)
 report_path?($options.output, $options.path, $options.report)
 output_report?($options.output, $options.path)
 
-# Show reports function
-#
-show_reports($options.report)
-
 if !$options.report.eql?('list')
   # CredStash functions
   #
@@ -25,14 +22,9 @@ if !$options.report.eql?('list')
   #
   get_creds($options.table, $options.region)
   auth($options.report, $options.region)
-
-  # Output functions
-  #
-  case $options.output
-  when 'json'
-    give_json($options.report)
-  when 'yaml'
-    give_yaml($options.report)
-  end
 end
+
+# Output functions
+#
+give_report($options.report, $options.output)
 

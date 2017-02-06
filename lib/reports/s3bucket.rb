@@ -18,7 +18,7 @@ module Reports
 	)
 
 	$report[bucket.name] = Hash.new
-	$report[bucket.name][:creation_date] = bucket.creation_date
+	$report[bucket.name][:creation_date] = bucket.creation_date.to_s.gsub(/(\.\d+\WZ$)/, '')
 
 	if logged.logging_enabled.nil?
 	  $report[bucket.name][:logging] = false

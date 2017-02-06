@@ -44,19 +44,5 @@ module Core
     end
   end
 
-  def report_path?(output, path, report)
-
-    if output.nil? and !path.nil? and report.nil?
-      fail('--report and --output must be defined')
-    end
-  end
-
-  def output_report?(output, path)
-
-    if !output.eql?('html') and !path.nil?
-      fail('only html file outputs are currently supported')
-    end
-  end
-
 end
 

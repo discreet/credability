@@ -19,9 +19,23 @@ module Reports
 	$report[descr.load_balancer_name][:dns_name] = descr.dns_name
 
 	$report[descr.load_balancer_name][:availability_zones] = Hash.new
-	$report[descr.load_balancer_name][:avaiability_zones][:name] = descr.availability_zones.map { |i| i['zone_name'] }
+	$report[descr.load_balancer_name][:availability_zones][:name] = descr.availability_zones.map { |i| i['zone_name'] }
 	$report[descr.load_balancer_name][:availability_zones][:subnet_id] = descr.availability_zones.map { |i| i['subnet_id'] }
 	$report[descr.load_balancer_name][:security_group] = descr.security_groups
+
+	tags = $albclient.describe_load_balancer_tags(
+	  {
+	    load_balancer_arn: descr.load_balancer_arn
+	  }
+	)
+
+	$report[descr.load_balancer_name][:tags] = Hash.new
+
+	tags.tag_descriptions.each do |descr|
+	  descr.tags.each do |tag|
+	    $report[descr.load_balancer_name][:tags][tag.key] = tag.value
+	  end
+	end
 
 	attrs = $albclient.describe_load_balancer_attributes(
 	  {
@@ -68,10 +82,24 @@ module Reports
 	$report[descr.load_balancer_name][:creation_time] = descr.created_time
 	$report[descr.load_balancer_name][:dns_name] = descr.dns_name
 
-	$report[descr.load_balancer_name][:availability_zone] = Hash.new
-	$report[descr.load_balancer_name][:availability_zone][:name] = descr.availability_zones
-	$report[descr.load_balancer_name][:availability_zone][:subnet_id] = descr.subnets
+	$report[descr.load_balancer_name][:availability_zones] = Hash.new
+	$report[descr.load_balancer_name][:availability_zones][:name] = descr.availability_zones
+	$report[descr.load_balancer_name][:availability_zones][:subnet_id] = descr.subnets
 	$report[descr.load_balancer_name][:security_group] = descr.security_groups
+
+	tags = $elbclient.describe_tags(
+	  {
+	    load_balancer_names: [descr.load_balancer_name]
+	  }
+	)
+
+	$report[descr.load_balancer_name][:tags] = Hash.new
+
+	tags.tag_descriptions.each do |descr|
+	  descr.tags.each do |tag|
+	    $report[descr.load_balancer_name][:tags][tag.key] = tag.value
+	  end
+	end
 
 	$report[descr.load_balancer_name][:logging] = Hash.new
 

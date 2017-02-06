@@ -22,9 +22,7 @@ require_relative 'core/validate'
 require_relative 'core/rcredstash'
 require_relative 'core/auth'
 
-require_relative 'outputs/reports'
-require_relative 'outputs/json'
-require_relative 'outputs/yaml'
+require_relative 'outputs/outputs'
 
 require_relative 'reports/reports'
 

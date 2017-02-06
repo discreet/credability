@@ -37,10 +37,6 @@ class Options
         options.output = output
       end
 
-      opts.on('--path PATH', 'path to create file output') do |path|
-	options.path = path
-      end
-
       opts.on_tail('-h', '--help', 'print help menu') do | help|
         puts opts
         exit

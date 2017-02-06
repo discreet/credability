@@ -19,7 +19,14 @@ module Core
       if context.nil?
         puts CredStash.get(credkey)
       else
-	puts %x(credstash -t #{table} get #{credkey} #{context.gsub(',', ' ')})
+	context_hash = Hash.new
+
+	context = context.split(',').each do |i|
+	  context = i.split('=')
+	  context_hash[context[0]] = context[1]
+	end
+
+	puts CredStash.get(credkey, context: context_hash )
 	exit
       end
     end
