@@ -9,8 +9,6 @@ can_credstash?($options.credstash, $options.table)
 can_fetch?($options.credstash, $options.credkey)
 report_valid?($reports_available, $options.report)
 can_report?($options.region, $options.table, $options.report)
-report_path?($options.output, $options.path, $options.report)
-output_report?($options.output, $options.path)
 
 if !$options.report.eql?('list')
   # CredStash functions
