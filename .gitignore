@@ -1,0 +1,3 @@
+# Files to not push to git
+config/config.yaml
+
