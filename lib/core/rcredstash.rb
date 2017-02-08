@@ -1,9 +1,11 @@
 module Core
+
   def credstash_configure(table)
 
     CredStash.configure do |config|
       config.table_name = table
     end
+
   end
 
   def credstash_action(table, credstash, credkey, context, filter)
@@ -30,6 +32,7 @@ module Core
 	exit
       end
     end
+
   end
 
 end

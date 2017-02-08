@@ -3,7 +3,6 @@ module Reports
   def get_reservedinstances()
     list = $client.describe_reserved_instances({})
 
-    puts list
     if list.reserved_instances.empty?
       puts 'No Reserved Instances Available'
       $noreport = 'No Reserved Instances Available'

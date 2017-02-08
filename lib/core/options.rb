@@ -3,7 +3,7 @@ class Options
   def self.parse(args)
     options = OpenStruct.new
     parser = OptionParser.new do |opts|
-      opts.banner = 'Usage: audit-aws [options]'
+      opts.banner = 'Usage: credability [options]'
 
       opts.on('-r', '--region REGION', 'aws region to query') do |region|
         options.region = region

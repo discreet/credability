@@ -11,5 +11,6 @@ module Core
     'ReservedInstances',
     'Ec2Instances',
   ]
+
 end
 
